@@ -5,5 +5,5 @@ Fonctionnalités implémentées:
         *Affiche de la photo de profil de l'utilisateur 
         *A chaque nouvelle connexion une nouvelle TodoList est crée et stockée sur firebase 
 Problèmes:
-        * Synchronisation des items (pleins d'erreur), donc on a mis en commentaire ce qu'on a commencé à faire 
+        * Synchronisation des items (pleins d'erreur), donc on a mis en commentaire ce qu'on a commencé à faire ( todolist.service.tc)
         * Des bugs dus à la non-compatiblité des obsrvable RxJs  
