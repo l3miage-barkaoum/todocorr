@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { HistoryService } from './history.service';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { User } from './app.component';
 
 export interface TodoItem {
   readonly label: string;
@@ -23,7 +25,7 @@ export class TodolistService {
   private subj = new BehaviorSubject<TodoList>({label: 'L3 MIAGE', items: [] });
   readonly observable = this.subj.asObservable();
 
-  constructor(private historyService: HistoryService<TodoList>) {
+  constructor(private historyService: HistoryService<TodoList>, public afs:AngularFirestore) {
     let retrievedTDL = localStorage.getItem("myTodoList")
     if(retrievedTDL!=null && retrievedTDL != "undefined"){
       console.log(retrievedTDL)
@@ -82,6 +84,23 @@ export class TodolistService {
   redo(){
     this.subj.next(this.historyService.redo())
   }
+  newTodoList(todolist: TodoList){ 
+    this.subj.next(todolist);}
+
+  creerTodoList(nom: string){
+      console.log("Création d'une nouvelle todolist");
+      const user: User = JSON.parse(localStorage.getItem('user')!);
+      const id = this.afs.createId();
+      const todolist: TodoList = {label: nom, items: []}
+      this.afs.collection("tasks").doc(nom).set(todolist);
+      user.todolists.push(todolist.label);
+      this.afs.collection("users").doc(user.uid).set(user, {merge: true});
+      
+    }
+   /* openCreateTodoListDialog(){
+    this.dialog.open(CreateComponent, {
+      backdropClass: 'backdropBackground'})
+  }*/
 
   supprCoches():void{
     const L = this.subj.value;

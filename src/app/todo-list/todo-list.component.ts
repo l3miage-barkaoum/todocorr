@@ -1,5 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { BehaviorSubject, Observable, combineLatest, Subject, map } from 'rxjs';
+import { User } from '../app.component';
 import { TodoItemComponent } from '../todo-item/todo-item.component';
 import { TodoItem, TodoList, TodolistService } from '../todolist.service';
 
@@ -50,6 +51,9 @@ export class TodoListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+  creerTodoList(nom: string):void{
+    this.tds.creerTodoList(nom);
   }
 
   create(...labels: readonly string[]): void {

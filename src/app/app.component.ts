@@ -39,8 +39,7 @@ export class AppComponent {
       firebase.auth().currentUser?.metadata.creationTime ===
       firebase.auth().currentUser?.metadata.lastSignInTime
     ) {
-        // sign up
-        console.log("C'est ma 1ere connection ! ")
+        console.log("Première todo ")
         const premiereTodolist : TodoList= {label: "Ma premiere todolist", items: [] } 
         this.afs.collection("todolists").doc(firebase.auth().currentUser?.uid).set(premiereTodolist)
     }
