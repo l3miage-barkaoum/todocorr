@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { TodoListComponent } from './todo-list/todo-list.component';
 import { TodoItemComponent } from './todo-item/todo-item.component';
 
-import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { AngularFireAuthModule, PERSISTENCE } from '@angular/fire/compat/auth';
 import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from 'src/environments/environment';
 import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app';
@@ -29,7 +29,8 @@ import { SETTINGS as AUTH_SETTINGS } from '@angular/fire/compat/auth';
   ],
   providers: [
     { provide: 'tdlInitial', useValue: {label: 'L3 MIAGE', items: [] }},
-    { provide: AUTH_SETTINGS, useValue: { appVerificationDisabledForTesting: true } }
+    { provide: AUTH_SETTINGS, useValue: { appVerificationDisabledForTesting: true } },
+    { provide: PERSISTENCE, useValue: 'local' },
   ],
   bootstrap: [AppComponent]
 })

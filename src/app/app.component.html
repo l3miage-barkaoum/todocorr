@@ -2,12 +2,13 @@
 
 <app-todo-list></app-todo-list>
 <div *ngIf="auth.user | async as user; else showLogin">
-    <h1>Hello {{ user.displayName }}!</h1>
+    <h1>SALUUUUUUUT  {{ user.displayName }}!</h1>
+    <img src="{{user.photoURL}}"/>
     <button (click)="logout()">Logout</button>
   </div>
   <ng-template #showLogin>
-    <p>Please login.</p>
-    <button (click)="login()">Login with Google</button>
+    <p>Connexion</p>
+    <button (click)="login()">Connexion Google</button>
   </ng-template>
 <!--
 <form (ngSubmit) = "onSubmit(data.value)">

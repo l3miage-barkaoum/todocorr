@@ -45,6 +45,8 @@ export class TodoListComponent implements OnInit {
         allDone: inter.remaining === 0
       }))
     );
+
+    
   }
 
   ngOnInit(): void {
